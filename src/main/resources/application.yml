@@ -1,0 +1,23 @@
+server:
+  port: 52640
+
+spring:
+  application:
+    name: eureka-turbine
+
+eureka:
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/,http://localhost:8763/eureka/
+
+turbine:
+  app-config: eureka-discovery-ribbon, eureka-discovery-feign
+  aggregator:
+    cluster-config: default
+  cluster-name-expression: new String("default")
+  #\u66F4\u6539turbine\u8FDE\u63A5\u7684\u9ED8\u8BA4uri\uFF0C\u9ED8\u8BA4\u4E3Aactuator/hystrix.stream\uFF0C\u7F16\u5199\u65F6\u6CA1\u6709\u81EA\u52A8\u5F39\u51FA\u63D0\u793A
+  instanceUrlSuffix: hystrix.stream
